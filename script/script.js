@@ -13,13 +13,13 @@ var player = {
    width: 35,
    height: 35,
    gravity: 0.2,
-   jumpHeight: 3.5
+   jumpHeight: 4.5
 };
 var pipes = {
    array: [],
    speed: 1.5,
    interval: 2.5, //In Seconds
-   gap: 150, 
+   gap: 175, 
    maxDeviation: 150, 
    width: 75,
    height: 50
