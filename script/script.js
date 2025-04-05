@@ -3,8 +3,8 @@ const reset_button = document.getElementById("reset-button");
 const ctx = canvas.getContext("2d");
 
 var board = {
-   width: 400,
-   height: 400
+   width: 500,
+   height: 500
 };
 var player = {
    x: 150,
@@ -140,3 +140,7 @@ function randomNumber(max) {
    const random = Math.floor(Math.random() * max);
    return random;
 }
+
+document.body.addEventListener("click", function (e) {
+      player.velY = player.jumpHeight * -1;
+});
