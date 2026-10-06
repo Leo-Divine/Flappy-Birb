@@ -1,0 +1,28 @@
+env:
+  PROJECT_NAME: 'flappy-bird-game' # set this to the name of the project. The correct syntax can be found in the url when viewing the project on GitLab
+
+name: Mirror main to GitLab
+
+on:
+  push:
+    branches: [main] # Change main to the branch you want to be the central branch
+  workflow_dispatch:
+
+concurrency:
+  group: gitlab-mirror
+  cancel-in-progress: false
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to GitLab
+        env:
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+        run: |
+          git remote add gitlab "https://oauth2:${GITLAB_TOKEN}@gitlab.com/keefe-programming-project-base/${PROJECT_NAME}.git"
+          git push gitlab HEAD:refs/heads/main # Change main to the branch you're using
